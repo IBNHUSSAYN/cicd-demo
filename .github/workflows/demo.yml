@@ -1,0 +1,13 @@
+name: DEMO REUSE WORKFLOWS
+on: 
+  push
+jobs:
+  deploy:
+    name: APPLICATION
+    runs-on: ubuntu-latest
+    steps:
+      - name: step_one
+        run: |
+          echo "Good Afternoon"
+          ls -l
+          
