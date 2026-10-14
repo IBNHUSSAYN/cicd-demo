@@ -1,6 +1,11 @@
 name: DEMO REUSE WORKFLOWS
 on: 
-  workflow_call
+  workflow_call:
+      secrets:
+        USERNAME:
+          required: true
+        PASSWORD:
+          required: true
 jobs:
   deploy:
     name: APPLICATION
