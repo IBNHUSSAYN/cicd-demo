@@ -10,4 +10,9 @@ jobs:
         run: |
           echo "Good Afternoon"
           ls -l
-          
+      - name: User_data
+        run: |
+          echo "Username: ${{ vars.USERNAME }}"
+          echo "User Password: ${{ secrets.PASSWORD }}"
+    environment:
+      name: demo_enviroment
