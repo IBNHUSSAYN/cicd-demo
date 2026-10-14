@@ -17,7 +17,7 @@ jobs:
           ls -l
       - name: User_data
         run: |
-          echo "Username: ${{ vars.USERNAME }}"
+          echo "Username: ${{ secrets.USERNAME }}"
           echo "User Password: ${{ secrets.PASSWORD }}"
     environment:
       name: demo_enviroment
