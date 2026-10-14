@@ -1,6 +1,6 @@
 name: DEMO REUSE WORKFLOWS
 on: 
-  push
+  workflow_call
 jobs:
   deploy:
     name: APPLICATION
