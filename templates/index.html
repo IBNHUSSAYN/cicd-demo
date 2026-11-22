@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <main class="task-manager">
+      <header class="page-header">
+        <p class="eyebrow">A little more focus, every day</p>
+        <h1>Task Manager</h1>
+        <p class="subtitle">Keep track of what needs to get done.</p>
+      </header>
+
+      <form class="add-form" action="{{ url_for('index') }}" method="post">
+        <label class="visually-hidden" for="title">New task</label>
+        <input id="title" name="title" type="text" placeholder="What needs doing?" required>
+        <button type="submit">Add task</button>
+      </form>
+
+      <section class="task-section" aria-labelledby="task-list-heading">
+        <div class="section-heading">
+          <h2 id="task-list-heading">Your tasks</h2>
+          <span class="task-count">{{ tasks|length }} total</span>
+        </div>
+
+        {% if tasks %}
+          <ul class="task-list">
+            {% for task in tasks %}
+              <li class="task-item{% if task.completed %} is-complete{% endif %}">
+                <span class="task-title">{{ task.title }}</span>
+                <div class="task-actions">
+                  {% if not task.completed %}
+                    <form action="{{ url_for('complete_task', task_id=task.id) }}" method="post">
+                      <button class="complete-button" type="submit">Complete</button>
+                    </form>
+                  {% else %}
+                    <span class="completed-label">Completed</span>
+                  {% endif %}
+                  <form action="{{ url_for('delete_task', task_id=task.id) }}" method="post">
+                    <button class="delete-button" type="submit" aria-label="Delete {{ task.title }}">Delete</button>
+                  </form>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        {% else %}
+          <p class="empty-state">No tasks yet. Add one above to get started.</p>
+        {% endif %}
+      </section>
+    </main>
+  </body>
+</html>
