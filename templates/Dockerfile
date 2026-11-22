@@ -1,6 +1,6 @@
 FROM nginx:latest
 
-WORKDIR /usr/nginx/share/html/
+WORKDIR /usr/share/nginx/html
 
 COPY index.html .
 
